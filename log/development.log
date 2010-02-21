@@ -27,3 +27,125 @@ Migrating to CreateComments (20100220200458)
 [0m
   [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("comments")[0m
   [4;36;1mSQL (0.1ms)[0m   [0;1mPRAGMA index_list("posts")[0m
+
+
+Processing PostsController#index (for 127.0.0.1 at 2010-02-21 03:28:43) [GET]
+  [4;36;1mPost Load (0.5ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering template within layouts/posts
+Rendering posts/index
+Completed in 114ms (View: 108, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#new (for 127.0.0.1 at 2010-02-21 03:28:45) [GET]
+Rendering template within layouts/posts
+Rendering posts/new
+Completed in 98ms (View: 71, DB: 0) | 200 OK [http://localhost/posts/new]
+
+
+Processing PostsController#create (for 127.0.0.1 at 2010-02-21 03:29:30) [POST]
+  Parameters: {"commit"=>"Create", "post"=>{"post"=>"Esqueci de tirar os h dos forms e adicionar o gsub =/", "title"=>"Novo Post", "author"=>"Felipe Silveira"}, "authenticity_token"=>"lFPmknuy9JjQeCgGcyr7FsSn3CLTjaAHdd9vjXky4Sc="}
+  [4;35;1mPost Create (0.5ms)[0m   [0mINSERT INTO "posts" ("created_at", "author", "title", "post", "updated_at") VALUES('2010-02-21 06:29:30', 'Felipe Silveira', 'Novo Post', 'Esqueci de tirar os h dos forms e adicionar o gsub =/', '2010-02-21 06:29:30')[0m
+Redirected to http://localhost:3000/posts/1
+Completed in 23ms (DB: 1) | 302 Found [http://localhost/posts]
+
+
+Processing PostsController#show (for 127.0.0.1 at 2010-02-21 03:29:30) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mPost Load (0.3ms)[0m   [0;1mSELECT * FROM "posts" WHERE ("posts"."id" = 1) [0m
+Rendering template within layouts/posts
+Rendering posts/show
+
+ActionView::TemplateError (undefined method `comments' for #<Post:0xb59229ac>) on line #1 of app/views/posts/_new_comment.html.erb:
+1: <% form_for(@post.comments.build) do |f| %>
+2:   <%= f.error_messages %>
+3: 
+4:   <p>
+
+    app/views/posts/_new_comment.html.erb:1
+    app/views/posts/show.html.erb:18
+    app/controllers/posts_controller.rb:18:in `show'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (97.6ms)
+Rendered rescues/_request_and_response (1.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#show (for 127.0.0.1 at 2010-02-21 03:32:33) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" WHERE ("posts"."id" = 1) [0m
+Rendering template within layouts/posts
+Rendering posts/show
+Rendered posts/_new_comment (21.6ms)
+Completed in 505ms (View: 26, DB: 1) | 200 OK [http://localhost/posts/1]
+
+
+Processing PostsController#show (for 127.0.0.1 at 2010-02-21 03:33:39) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mPost Load (0.3ms)[0m   [0;1mSELECT * FROM "posts" WHERE ("posts"."id" = 1) [0m
+Rendering template within layouts/posts
+Rendering posts/show
+Rendered posts/_new_comment (11.3ms)
+Completed in 27ms (View: 19, DB: 0) | 200 OK [http://localhost/posts/1]
+
+
+Processing PostsController#show (for 127.0.0.1 at 2010-02-21 03:33:59) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mPost Load (0.6ms)[0m   [0mSELECT * FROM "posts" WHERE ("posts"."id" = 1) [0m
+Rendering template within layouts/posts
+Rendering posts/show
+Rendered posts/_new_comment (10.8ms)
+Completed in 39ms (View: 25, DB: 1) | 200 OK [http://localhost/posts/1]
+
+
+Processing PostsController#show (for 127.0.0.1 at 2010-02-21 03:39:46) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mPost Load (0.6ms)[0m   [0;1mSELECT * FROM "posts" WHERE ("posts"."id" = 1) [0m
+Rendering template within layouts/posts
+Rendering posts/show
+  [4;35;1mComment Load (0.3ms)[0m   [0mSELECT * FROM "comments" WHERE ("comments".post_id = 1) [0m
+Rendered posts/_list_comments (7.9ms)
+Rendered posts/_new_comment (13.4ms)
+Completed in 60ms (View: 46, DB: 1) | 200 OK [http://localhost/posts/1]
+
+
+Processing CommentsController#create (for 127.0.0.1 at 2010-02-21 03:40:34) [POST]
+  Parameters: {"comment"=>{"comment"=>"Teste", "author"=>"Felipe", "site"=>"www.sourceprime.blogspot.com", "email"=>"febsilveira@hotmail.com"}, "commit"=>"Create", "authenticity_token"=>"lFPmknuy9JjQeCgGcyr7FsSn3CLTjaAHdd9vjXky4Sc="}
+  [4;36;1mComment Create (0.7ms)[0m   [0;1mINSERT INTO "comments" ("comment", "created_at", "author", "updated_at", "post_id", "site", "email") VALUES('Teste', '2010-02-21 06:40:34', 'Felipe', '2010-02-21 06:40:34', NULL, 'www.sourceprime.blogspot.com', 'febsilveira@hotmail.com')[0m
+Redirected to http://localhost:3000/comments/1
+Completed in 25ms (DB: 1) | 302 Found [http://localhost/comments]
+
+
+Processing CommentsController#show (for 127.0.0.1 at 2010-02-21 03:40:35) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mComment Load (0.3ms)[0m   [0mSELECT * FROM "comments" WHERE ("comments"."id" = 1) [0m
+Rendering template within layouts/comments
+Rendering comments/show
+Completed in 23ms (View: 14, DB: 0) | 200 OK [http://localhost/comments/1]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2010-02-21 03:40:56) [GET]
+  [4;36;1mPost Load (1.0ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering template within layouts/posts
+Rendering posts/index
+Completed in 42ms (View: 9, DB: 1) | 200 OK [http://localhost/posts/]
+
+
+Processing PostsController#show (for 127.0.0.1 at 2010-02-21 03:40:58) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mPost Load (0.5ms)[0m   [0mSELECT * FROM "posts" WHERE ("posts"."id" = 1) [0m
+Rendering template within layouts/posts
+Rendering posts/show
+  [4;36;1mComment Load (0.4ms)[0m   [0;1mSELECT * FROM "comments" WHERE ("comments".post_id = 1) [0m
+Rendered posts/_list_comments (7.6ms)
+Rendered posts/_new_comment (13.6ms)
+Completed in 40ms (View: 26, DB: 1) | 200 OK [http://localhost/posts/1]

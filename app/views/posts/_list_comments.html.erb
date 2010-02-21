@@ -1,0 +1,10 @@
+<table>
+<% @post.comments.each do |comment| %>
+  <tr>
+    <td><b>Author:</b> <%=h comment.author %></td>
+    <td><b>Site:</b> <%=h comment.site %></td>
+    <td><b>Email:</b> <%=h comment.email %></td>
+    <td><b>Comment:</b> <%=h comment.comment %></td>
+  </tr>
+<% end %>
+</table>
